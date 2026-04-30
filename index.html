@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> <meta name="google-site-verification" content="Txbk3oTaeZwmw_TyGsUTPwhxT2yE14zLdUzwTIirVAg" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Gimnastas de Salta</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #181818;
+    --gold: #D4A017;
+    --gold-light: #F0BE3D;
+    --red: #C0392B;
+    --white: #F5F0E8;
+    --gray: #888;
+    --border: rgba(212,160,23,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4rem;
+    height: 70px;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .logo span { color: var(--white); }
+  nav ul { display: flex; gap: 2.5rem; list-style: none; }
+  nav ul a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(212,160,23,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(192,57,43,0.1) 0%, transparent 50%),
+      linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,160,23,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,160,23,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    color: var(--white);
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-title .accent { color: var(--gold); }
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 1rem;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-tagline {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: rgba(245,240,232,0.6);
+    max-width: 500px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .hero-cta {
+    margin-top: 3rem;
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--gold);
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--black);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.6);
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 2px;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .section-title .red { color: var(--red); }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--gray);
+    max-width: 540px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .divider {
+    width: 60px; height: 3px;
+    background: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  /* PESO IDEAL */
+  #peso { background: var(--dark); }
+  .peso-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .peso-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .peso-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gold);
+  }
+  .peso-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .peso-table { width: 100%; border-collapse: collapse; }
+  .peso-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 0.5rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .peso-table td {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--white);
+  }
+  .peso-table tr:hover td { background: rgba(212,160,23,0.06); }
+  .tag-ideal {
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    margin-left: 6px;
+  }
+  .imc-calculator {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+  }
+  .imc-calculator h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .field { margin-bottom: 1.2rem; }
+  .field label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 0.4rem;
+  }
+  .field input, .field select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .field input:focus, .field select:focus { border-color: var(--gold); }
+  .field select option { background: var(--dark); }
+  .calc-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.9rem;
+    border: none; cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
+  }
+  .calc-btn:hover { background: var(--gold-light); }
+  #imc-result {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(212,160,23,0.08);
+    border: 1px solid var(--border);
+    display: none;
+  }
+  #imc-result .result-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  #imc-result .result-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 0.3rem;
+  }
+  #imc-result .result-desc {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.7);
+  }
+
+  /* RUTINAS */
+  #rutinas { background: var(--black); }
+  .rutinas-tabs {
+    display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1100px; margin-left: auto; margin-right: auto;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.9rem 1.8rem;
+    background: none; border: none;
+    color: var(--gray); cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+    margin-bottom: -1px;
+  }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-btn:hover:not(.active) { color: var(--white); }
+  .rutina-panel { display: none; max-width: 1100px; margin: 0 auto; }
+  .rutina-panel.active { display: block; }
+  .rutina-intro {
+    font-size: 0.95rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    padding: 1.2rem 1.5rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(212,160,23,0.05);
+  }
+  .days-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+  .day-card:hover { border-color: rgba(212,160,23,0.5); }
+  .day-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .day-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1.2rem;
+  }
+  .exercise-list { list-style: none; }
+  .exercise-list li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.9rem;
+  }
+  .exercise-list li:last-child { border-bottom: none; }
+  .exercise-name { color: var(--white); }
+  .exercise-sets {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--gold);
+  }
+  .rest-day {
+    display: flex; align-items: center; justify-content: center;
+    height: 80px;
+    color: var(--gray);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border: 1px dashed rgba(255,255,255,0.08);
+  }
+
+  /* CONSEJOS */
+  #consejos { background: var(--dark); }
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .tip-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .tip-card:hover { transform: translateY(-4px); border-color: rgba(212,160,23,0.4); }
+  .tip-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .tip-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .tip-card p {
+    font-size: 0.92rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.7;
+  }
+  .tip-num {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: rgba(212,160,23,0.08);
+    line-height: 1;
+  }
+
+  /* NUTRICION */
+  #nutricion { background: var(--black); }
+  .nutri-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; max-width: 1100px; margin: 0 auto; }
+  .macro-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .macro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .macro-icon {
+    width: 52px; height: 52px;
+    background: rgba(212,160,23,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .macro-info h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+  .macro-info p { font-size: 0.88rem; color: var(--gray); line-height: 1.5; }
+  .meal-plan {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+  }
+  .meal-plan h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .meal-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .meal-item:last-child { border-bottom: none; }
+  .meal-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 80px;
+    padding-top: 2px;
+  }
+  .meal-desc { font-size: 0.9rem; color: rgba(245,240,232,0.7); line-height: 1.5; }
+
+  /* PROGRESION */
+  #progresion { background: var(--dark); }
+  .prog-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; max-width: 1100px; margin: 0 auto; }
+  .prog-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+  .prog-step + .prog-step { border-left: none; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(212,160,23,0.1);
+    line-height: 1;
+    margin-bottom: -1rem;
+  }
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .step-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+  .step-duration {
+    margin-top: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(212,160,23,0.6);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #070707;
+    border-top: 1px solid var(--border);
+    padding: 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .footer-logo span { color: var(--white); }
+  .footer-tagline { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; font-size: 0.88rem; color: var(--gray); }
+  .footer-bottom {
+    background: #070707;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: rgba(136,136,136,0.5);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    nav ul { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .peso-grid, .nutri-grid { grid-template-columns: 1fr; }
+    .prog-step + .prog-step { border-left: 1px solid var(--border); border-top: none; }
+    footer { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; padding: 1rem 1.5rem; text-align: center; }
+    .stats-bar { padding: 1.2rem 1.5rem; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Los Gimnastas<span>.com</span></a>
+  <ul>
+    <li><a href="#peso">Peso Ideal</a></li>
+    <li><a href="#rutinas">Rutinas</a></li>
+    <li><a href="#consejos">Consejos</a></li>
+    <li><a href="#nutricion">Nutrición</a></li>
+    <li><a href="#progresion">Progresión</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Salta, Argentina — Est. 2024</p>
+    <h1 class="hero-title">LOS<br><span class="accent">GIMNASTAS</span><br>DE SALTA</h1>
+    <p class="hero-sub">Fuerza · Disciplina · Resultados</p>
+    <p class="hero-tagline">Tu guía definitiva para el entrenamiento con pesas en el norte argentino. Rutinas reales, consejos expertos y resultados que se ven.</p>
+    <div class="hero-cta">
+      <a href="#rutinas" class="btn-primary">Ver Rutinas</a>
+      <a href="#peso" class="btn-outline">Calcular Mi IMC</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label">Rutinas disponibles</div></div>
+  <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Miembros activos</div></div>
+  <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Entrenadores</div></div>
+  <div class="stat-item"><div class="stat-num">5★</div><div class="stat-label">Calificación media</div></div>
+</div>
+
+<!-- PESO IDEAL -->
+<section id="peso">
+  <div class="peso-grid">
+    <div>
+      <div class="reveal">
+        <p class="section-label">Referencia</p>
+        <h2 class="section-title">PESO <span class="red">IDEAL</span></h2>
+        <div class="divider"></div>
+        <p class="section-desc">El "peso ideal" no es un número único — depende de tu altura, sexo, complexión y composición corporal. Usá la tabla como referencia y la calculadora para orientarte.</p>
+      </div>
+
+      <div class="peso-card reveal">
+        <h3>Peso Saludable por Altura — Hombres</h3>
+        <table class="peso-table">
+          <tr><th>Altura</th><th>Rango Saludable</th><th>Estado</th></tr>
+          <tr><td>1.60 m</td><td>51 – 64 kg</td><td></td></tr>
+          <tr><td>1.65 m</td><td>55 – 68 kg</td><td></td></tr>
+          <tr><td>1.70 m</td><td>58 – 72 kg <span class="tag-ideal">Común</span></td><td></td></tr>
+          <tr><td>1.75 m</td><td>62 – 77 kg</td><td></td></tr>
+          <tr><td>1.80 m</td><td>66 – 82 kg</td><td></td></tr>
+          <tr><td>1.85 m</td><td>70 – 86 kg</td><td></td></tr>
+        </table>
+      </div>
+
+      <div class="peso-card reveal" style="margin-top:1.2rem">
+        <h3>Peso Saludable por Altura — Mujeres</h3>
+        <table class="peso-table">
+          <tr><th>Altura</th><th>Rango Saludable</th><th>Estado</th></tr>
+          <tr><td>1.55 m</td><td>44 – 56 kg</td><td></td></tr>
+          <tr><td>1.60 m</td><td>47 – 60 kg</td><td></td></tr>
+          <tr><td>1.65 m</td><td>50 – 64 kg <span class="tag-ideal">Común</span></td><td></td></tr>
+          <tr><td>1.70 m</td><td>54 – 67 kg</td><td></td></tr>
+          <tr><td>1.75 m</td><td>57 – 71 kg</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <div class="imc-calculator reveal">
+        <h3>🏋️ Calculadora de IMC</h3>
+        <div class="field">
+          <label>Peso (kg)</label>
+          <input type="number" id="peso-kg" placeholder="Ej: 75" min="30" max="250">
+        </div>
+        <div class="field">
+          <label>Altura (cm)</label>
+          <input type="number" id="altura-cm" placeholder="Ej: 175" min="100" max="250">
+        </div>
+        <div class="field">
+          <label>Sexo</label>
+          <select id="sexo">
+            <option value="m">Masculino</option>
+            <option value="f">Femenino</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="calcularIMC()">CALCULAR MI IMC</button>
+        <div id="imc-result">
+          <div class="result-val" id="imc-val">—</div>
+          <div class="result-label" id="imc-cat">—</div>
+          <div class="result-desc" id="imc-desc">—</div>
+        </div>
+      </div>
+
+      <div class="peso-card reveal" style="margin-top:1.2rem">
+        <h3>Tabla de Referencia IMC</h3>
+        <table class="peso-table">
+          <tr><th>IMC</th><th>Clasificación</th></tr>
+          <tr><td>&lt; 18.5</td><td style="color:#87CEEB">Bajo peso</td></tr>
+          <tr><td>18.5 – 24.9</td><td style="color:#50C878">Peso normal <span class="tag-ideal">Ideal</span></td></tr>
+          <tr><td>25.0 – 29.9</td><td style="color:#F4A460">Sobrepeso</td></tr>
+          <tr><td>30.0 – 34.9</td><td style="color:#FF6347">Obesidad I</td></tr>
+          <tr><td>≥ 35.0</td><td style="color:#C0392B">Obesidad II+</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUTINAS -->
+<section id="rutinas">
+  <div style="max-width:1100px; margin:0 auto 2rem;">
+    <p class="section-label reveal">Planes de entrenamiento</p>
+    <h2 class="section-title reveal">RUTINAS <span class="red">DE</span> PESAS</h2>
+    <div class="divider reveal"></div>
+    <p class="section-desc reveal">Seleccioná tu nivel y seguí el plan semanal. Cada rutina está diseñada para maximizar resultados según tu experiencia y disponibilidad de tiempo.</p>
+  </div>
+
+  <div class="rutinas-tabs">
+    <button class="tab-btn active" onclick="switchTab('principiante', this)">🟢 Principiante</button>
+    <button class="tab-btn" onclick="switchTab('intermedio', this)">🟡 Intermedio</button>
+    <button class="tab-btn" onclick="switchTab('avanzado', this)">🔴 Avanzado</button>
+  </div>
+
+  <!-- PRINCIPIANTE -->
+  <div class="rutina-panel active" id="tab-principiante">
+    <div class="rutina-intro">
+      <strong>3 días por semana · Full Body</strong> — Ideal para quienes empiezan o regresan al gimnasio. Enfocado en aprender los movimientos básicos y construir una base sólida. Descanso de al menos 1 día entre sesiones.
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <div class="day-label">DÍA 1</div>
+        <div class="day-name">Lunes — Full Body A</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Sentadilla Goblet</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Press de Banca</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Remo con Barra</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Prensa de Piernas</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Curl de Bíceps</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Tríceps en Polea</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Plancha</span><span class="exercise-sets">3×30s</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 2</div>
+        <div class="day-name">Miércoles — Full Body B</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Peso Muerto Rumano</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Press Militar</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Jalón al Pecho</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Zancadas con Mancuernas</span><span class="exercise-sets">3×10c/l</span></li>
+          <li><span class="exercise-name">Elevaciones Laterales</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Crunch Abdominal</span><span class="exercise-sets">3×20</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 3</div>
+        <div class="day-name">Viernes — Full Body C</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Sentadilla con Barra</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Press Inclinado con Mancuernas</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Remo en Máquina</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Curl de Femoral</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Extensión de Cuádriceps</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Plancha Lateral</span><span class="exercise-sets">3×25s</span></li>
+        </ul>
+      </div>
+      <div class="day-card rest-day">🛌 Mar / Jue / Sáb / Dom — Descanso o cardio suave</div>
+    </div>
+  </div>
+
+  <!-- INTERMEDIO -->
+  <div class="rutina-panel" id="tab-intermedio">
+    <div class="rutina-intro">
+      <strong>4 días por semana · Upper/Lower Split</strong> — Para quienes tienen 6+ meses de experiencia consistente. Divide el trabajo en tren superior e inferior para mayor volumen por grupo muscular.
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <div class="day-label">DÍA 1</div>
+        <div class="day-name">Lunes — Tren Superior A</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Press de Banca con Barra</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Remo con Barra</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Press Inclinado Mancuernas</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Jalón al Pecho</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Press Militar con Barra</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Curl Bíceps Barra</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Fondos en Paralelas</span><span class="exercise-sets">3×max</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 2</div>
+        <div class="day-name">Martes — Tren Inferior A</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Sentadilla con Barra</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Peso Muerto Rumano</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Prensa de Piernas</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Curl de Femoral</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Elevación de Gemelos</span><span class="exercise-sets">4×15</span></li>
+          <li><span class="exercise-name">Abdomen (varios)</span><span class="exercise-sets">3×15-20</span></li>
+        </ul>
+      </div>
+      <div class="day-card rest-day">⚡ Miércoles — Descanso activo o cardio</div>
+      <div class="day-card">
+        <div class="day-label">DÍA 3</div>
+        <div class="day-name">Jueves — Tren Superior B</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Press Banca Agarre Cerrado</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Dominadas (o Asistidas)</span><span class="exercise-sets">4×6-8</span></li>
+          <li><span class="exercise-name">Elevaciones Laterales</span><span class="exercise-sets">4×15</span></li>
+          <li><span class="exercise-name">Remo en Polea Baja</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Curl Martillo</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Extensión Tríceps Mancuerna</span><span class="exercise-sets">3×12</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 4</div>
+        <div class="day-name">Viernes — Tren Inferior B</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Peso Muerto Convencional</span><span class="exercise-sets">4×6</span></li>
+          <li><span class="exercise-name">Hack Squat</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Zancadas con Barra</span><span class="exercise-sets">3×10c/l</span></li>
+          <li><span class="exercise-name">Extensión Cuádriceps</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Peso Muerto Piernas Rígidas</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Gemelos en Prensa</span><span class="exercise-sets">4×20</span></li>
+        </ul>
+      </div>
+      <div class="day-card rest-day">🛌 Sábado / Domingo — Descanso total</div>
+    </div>
+  </div>
+
+  <!-- AVANZADO -->
+  <div class="rutina-panel" id="tab-avanzado">
+    <div class="rutina-intro">
+      <strong>5 días por semana · Push/Pull/Legs</strong> — Para atletas con más de 2 años de entrenamiento serio. Alta frecuencia e intensidad. Requiere buena gestión del descanso y la nutrición.
+    </div>
+    <div class="days-grid">
+      <div class="day-card">
+        <div class="day-label">DÍA 1</div>
+        <div class="day-name">Lunes — Push (Empuje)</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Press Banca con Barra</span><span class="exercise-sets">5×5</span></li>
+          <li><span class="exercise-name">Press Militar Barra</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Press Inclinado Mancuernas</span><span class="exercise-sets">4×10</span></li>
+          <li><span class="exercise-name">Aperturas en Cable</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Elevaciones Laterales</span><span class="exercise-sets">4×15</span></li>
+          <li><span class="exercise-name">Fondos lastrados</span><span class="exercise-sets">3×8</span></li>
+          <li><span class="exercise-name">Extensión Tríceps Cuerda</span><span class="exercise-sets">3×15</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 2</div>
+        <div class="day-name">Martes — Pull (Tirón)</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Peso Muerto Convencional</span><span class="exercise-sets">5×5</span></li>
+          <li><span class="exercise-name">Dominadas Lastradas</span><span class="exercise-sets">4×6</span></li>
+          <li><span class="exercise-name">Remo Barra Pendlay</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Jalón al Pecho Agarre Neutro</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Remo en Polea Alta</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Curl Bíceps con Barra Z</span><span class="exercise-sets">4×10</span></li>
+          <li><span class="exercise-name">Curl Concentrado</span><span class="exercise-sets">3×12</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 3</div>
+        <div class="day-name">Miércoles — Legs (Piernas)</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Sentadilla Barra (Back Squat)</span><span class="exercise-sets">5×5</span></li>
+          <li><span class="exercise-name">Peso Muerto Rumano</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Hack Squat</span><span class="exercise-sets">3×10</span></li>
+          <li><span class="exercise-name">Curl Femoral Máquina</span><span class="exercise-sets">4×12</span></li>
+          <li><span class="exercise-name">Extensión Cuádriceps</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Abducción de Cadera</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Gemelos en Pie + Sentado</span><span class="exercise-sets">5×15</span></li>
+        </ul>
+      </div>
+      <div class="day-card rest-day">⚡ Jueves — Recuperación activa</div>
+      <div class="day-card">
+        <div class="day-label">DÍA 4</div>
+        <div class="day-name">Viernes — Push (Volumen)</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Press Inclinado con Barra</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Press Banca Plano Mancuernas</span><span class="exercise-sets">4×10</span></li>
+          <li><span class="exercise-name">Press Arnold</span><span class="exercise-sets">4×10</span></li>
+          <li><span class="exercise-name">Aperturas en Banco Inclinado</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Elevaciones al Frente</span><span class="exercise-sets">3×15</span></li>
+          <li><span class="exercise-name">Fondos en Paralelas</span><span class="exercise-sets">4×max</span></li>
+        </ul>
+      </div>
+      <div class="day-card">
+        <div class="day-label">DÍA 5</div>
+        <div class="day-name">Sábado — Pull (Volumen)</div>
+        <ul class="exercise-list">
+          <li><span class="exercise-name">Remo con Barra T</span><span class="exercise-sets">4×8</span></li>
+          <li><span class="exercise-name">Dominadas Supinas</span><span class="exercise-sets">4×max</span></li>
+          <li><span class="exercise-name">Remo Sentado en Cable</span><span class="exercise-sets">4×12</span></li>
+          <li><span class="exercise-name">Curl Inclinado Mancuernas</span><span class="exercise-sets">3×12</span></li>
+          <li><span class="exercise-name">Face Pull en Cable</span><span class="exercise-sets">3×20</span></li>
+          <li><span class="exercise-name">Peso Muerto Sumo</span><span class="exercise-sets">3×8</span></li>
+        </ul>
+      </div>
+      <div class="day-card rest-day">🛌 Domingo — Descanso total obligatorio</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSEJOS -->
+<section id="consejos">
+  <div style="max-width:1100px; margin:0 auto 3rem;">
+    <p class="section-label reveal">Guía de entrenamiento</p>
+    <h2 class="section-title reveal">CONSEJOS <span class="red">CLAVE</span></h2>
+    <div class="divider reveal"></div>
+    <p class="section-desc reveal">Estos principios son la diferencia entre progresar rápido y estancarte. Aplicalos desde el día uno.</p>
+  </div>
+  <div class="tips-grid">
+    <div class="tip-card reveal">
+      <div class="tip-num">01</div>
+      <div class="tip-icon">🎯</div>
+      <h3>Técnica Antes que Peso</h3>
+      <p>Nunca sacrifiques la forma por cargar más. Una ejecución incorrecta genera lesiones y limita el crecimiento muscular real. Aprendé cada movimiento con poco peso y progresá gradualmente.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">02</div>
+      <div class="tip-icon">📈</div>
+      <h3>Sobrecarga Progresiva</h3>
+      <p>El músculo crece cuando lo desafiás más de lo que está acostumbrado. Intentá agregar 1-2 kg o 1 repetición más cada semana. Este es el principio número uno del entrenamiento efectivo.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">03</div>
+      <div class="tip-icon">😴</div>
+      <h3>El Descanso es Sagrado</h3>
+      <p>Los músculos no crecen en el gym — crecen mientras dormís. Apuntá a 7-9 horas de sueño por noche. Sin descanso adecuado, cualquier rutina perfecta va a fracasar.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">04</div>
+      <div class="tip-icon">💧</div>
+      <h3>Hidratación Constante</h3>
+      <p>Tomá al menos 35ml de agua por kg de peso corporal por día. Durante el entrenamiento, tomá agua cada 15-20 minutos. La deshidratación reduce la fuerza hasta un 15%.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">05</div>
+      <div class="tip-icon">🔥</div>
+      <h3>Calentamiento Obligatorio</h3>
+      <p>5-10 minutos de cardio suave más series de calentamiento específicas del ejercicio. Nunca saltes directo al peso de trabajo — es el camino más rápido a la lesión.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">06</div>
+      <div class="tip-icon">📊</div>
+      <h3>Registrá Todo</h3>
+      <p>Llevá un diario de entrenamiento: ejercicio, series, repeticiones y peso. No podés mejorar lo que no medís. Ver tu progreso escrito es también uno de los mejores motivadores.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">07</div>
+      <div class="tip-icon">⏱️</div>
+      <h3>Descanso Entre Series</h3>
+      <p>Para fuerza (1-5 reps): 3-5 minutos. Para hipertrofia (6-15 reps): 60-90 segundos. Para resistencia (+15 reps): 30-60 segundos. Respetar estos tiempos impacta directamente el resultado.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">08</div>
+      <div class="tip-icon">🧘</div>
+      <h3>Conexión Mente-Músculo</h3>
+      <p>Enfocate en sentir el músculo que estás trabajando, no solo en mover el peso. Visualizá la contracción. Los estudios muestran que esto aumenta la activación muscular significativamente.</p>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">09</div>
+      <div class="tip-icon">🔄</div>
+      <h3>Consistencia sobre Perfección</h3>
+      <p>Una rutina "buena" que seguís durante meses supera una rutina "perfecta" que abandonás a las 3 semanas. La adherencia a largo plazo es el factor número uno de los resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NUTRICION -->
+<section id="nutricion">
+  <div class="nutri-grid">
+    <div>
+      <p class="section-label reveal">Combustible para el músculo</p>
+      <h2 class="section-title reveal">NUTRICIÓN <span class="red">DEPORTIVA</span></h2>
+      <div class="divider reveal"></div>
+      <p class="section-desc reveal">Sin nutrición adecuada, tu entrenamiento tiene un techo muy bajo. Entendé los macronutrientes y optimizá tu ingesta según tu objetivo.</p>
+
+      <div class="macro-cards">
+        <div class="macro-card reveal">
+          <div class="macro-icon">🥩</div>
+          <div class="macro-info">
+            <h4>Proteína</h4>
+            <p>1.6 – 2.2g por kg de peso corporal/día. Esencial para la recuperación y construcción muscular. Fuentes: pollo, huevo, carne, atún, legumbres.</p>
+          </div>
+        </div>
+        <div class="macro-card reveal">
+          <div class="macro-icon">🍚</div>
+          <div class="macro-info">
+            <h4>Carbohidratos</h4>
+            <p>3 – 5g por kg al día. Principal fuente de energía para el entrenamiento intenso. Preferí fuentes complejas: arroz, avena, papa, batata, pan integral.</p>
+          </div>
+        </div>
+        <div class="macro-card reveal">
+          <div class="macro-icon">🥑</div>
+          <div class="macro-info">
+            <h4>Grasas Saludables</h4>
+            <p>0.8 – 1.2g por kg al día. Fundamentales para hormonas y recuperación. Fuentes: palta, aceite de oliva, frutos secos, pescado graso.</p>
+          </div>
+        </div>
+        <div class="macro-card reveal">
+          <div class="macro-icon">⚡</div>
+          <div class="macro-info">
+            <h4>Timing Nutricional</h4>
+            <p>Comé proteínas + carbohidratos 1-2 horas antes del entrenamiento y dentro de los 30-60 minutos post-entreno para optimizar la recuperación.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meal-plan reveal">
+      <h3>🗓️ Plan Alimentario Tipo (75kg)</h3>
+      <div class="meal-item">
+        <div class="meal-time">07:00</div>
+        <div class="meal-desc"><strong>Desayuno:</strong> 3 huevos revueltos + 2 tostadas de pan integral + 1 banana + café sin azúcar</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">10:00</div>
+        <div class="meal-desc"><strong>Colación AM:</strong> 200g de yogur griego + 30g de avena + frutos rojos + 1 puñado de nueces</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">13:00</div>
+        <div class="meal-desc"><strong>Almuerzo:</strong> 200g de pechuga de pollo grillada + 150g de arroz integral + ensalada grande + aceite de oliva</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">16:00</div>
+        <div class="meal-desc"><strong>Pre-Entreno:</strong> 1 banana + 30g de mantequilla de maní + 1 vaso de leche o batido de proteína</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">19:00</div>
+        <div class="meal-desc"><strong>Post-Entreno:</strong> Batido de proteína + fruta o 200g de atún + 1 papa mediana</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">21:00</div>
+        <div class="meal-desc"><strong>Cena:</strong> 200g de carne o pescado + vegetales salteados + puré de batata o legumbres</div>
+      </div>
+      <div class="meal-item">
+        <div class="meal-time">22:30</div>
+        <div class="meal-desc"><strong>Colación Nocturna:</strong> 200g de queso cottage o caseína — proteína de digestión lenta para la recuperación nocturna</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESION -->
+<section id="progresion">
+  <div style="max-width:1100px; margin:0 auto 3rem;">
+    <p class="section-label reveal">Tu camino al músculo</p>
+    <h2 class="section-title reveal">FASES DE <span class="red">PROGRESIÓN</span></h2>
+    <div class="divider reveal"></div>
+    <p class="section-desc reveal">El desarrollo físico tiene etapas bien definidas. Conocer en cuál estás te ayuda a entrenar inteligente y no desesperarte.</p>
+  </div>
+  <div class="prog-steps reveal">
+    <div class="prog-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Adaptación Neurológica</div>
+      <div class="step-desc">Tu sistema nervioso aprende a reclutar fibras musculares eficientemente. Las ganancias de fuerza son rápidas pero el volumen muscular es mínimo. Enfocate en la técnica.</div>
+      <div class="step-duration">Meses 1 – 3</div>
+    </div>
+    <div class="prog-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Hipertrofia Inicial</div>
+      <div class="step-desc">Empezás a ver cambios visibles en tu físico. Las ganancias son más rápidas que en etapas posteriores. Es el mejor momento del proceso — aprovechalo.</div>
+      <div class="step-duration">Meses 3 – 12</div>
+    </div>
+    <div class="prog-step">
+      <div class="step-num">03</div>
+      <div class="step-title">Crecimiento Intermedio</div>
+      <div class="step-desc">Las ganancias se moderan. Necesitás más variedad, más volumen y mejor nutrición. Empezás a individualizar tu entrenamiento según tus puntos débiles.</div>
+      <div class="step-duration">Año 1 – 3</div>
+    </div>
+    <div class="prog-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Atleta Avanzado</div>
+      <div class="step-desc">Las ganancias son lentas pero el conocimiento de tu cuerpo es profundo. Cada kilo de músculo ganado representa meses de trabajo. La disciplina se convierte en identidad.</div>
+      <div class="step-duration">Año 3 en adelante</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Los Gimnastas<span>.com</span></div>
+    <p class="footer-tagline">Tu gimnasio de referencia en Salta, Argentina. Entrenamiento con propósito, resultados reales.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Secciones</h4>
+    <ul>
+      <li>Peso Ideal & IMC</li>
+      <li>Rutinas de Pesas</li>
+      <li>Consejos de Entrenamiento</li>
+      <li>Nutrición Deportiva</li>
+      <li>Fases de Progresión</li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contacto</h4>
+    <ul>
+      <li>📍 Salta Capital, Argentina</li>
+      <li>📧 info@losgimnastasdesalta.com</li>
+      <li>📱 @losgimnastasdesalta</li>
+      <li>🕐 Lun–Sáb: 6:00 – 22:00</li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2024 losgimnastasdesalta.com — Todos los derechos reservados</span>
+  <span>Diseñado con 💪 en Salta</span>
+</div>
+
+<script>
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // TABS
+  function switchTab(id, btn) {
+    document.querySelectorAll('.rutina-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+ // IMC CALCULATOR
+  function calcularIMC() {
+    const peso = parseFloat(document.getElementById('peso-kg').value);
+    const altCm = parseFloat(document.getElementById('altura-cm').value);
+    const sexo = document.getElementById('sexo').value;
+    if (!peso || !altCm || altCm < 100) { alert('Ingresá valores válidos'); return; }
+    const alt = altCm / 100;
+    const imc = (peso / (alt * alt)).toFixed(1);
+    let cat, desc, color;
+    if (imc < 18.5) {
+      cat = 'BAJO PESO'; color = '#87CEEB';
+      desc = `Tu IMC de ${imc} indica bajo peso. Considerá aumentar la ingesta calórica y proteica. En el gym, un buen plan de volumen (superávit calórico + entrenamiento de fuerza) te ayudará a ganar masa muscular saludablemente.`;
+    } else if (imc < 25) {
+      cat = 'PESO NORMAL ✓'; color = '#50C878';
+      desc = `¡Excelente! Tu IMC de ${imc} está en el rango saludable. Estás en una posición ideal para ganar músculo con poca grasa (recomposición corporal) o para realizar una fase de volumen limpio.`;
+    } else if (imc < 30) {
+      cat = 'SOBREPESO'; color = '#F4A460';
+      desc = `Tu IMC de ${imc} indica sobrepeso. Con un déficit calórico moderado (300-500 kcal/día) combinado con entrenamiento de fuerza podés perder grasa y ganar músculo simultáneamente.`;
+    } else if (imc < 35) {
+      cat = 'OBESIDAD GRADO I'; color = '#FF6347';
+      desc = `Tu IMC de ${imc} indica obesidad grado I. El entrenamiento con pesas es excelente para mejorar tu composición corporal. Combinalo con un ajuste nutricional y consultá a un profesional de la salud.`;
+    } else {
+      cat = 'OBESIDAD GRADO II+'; color = '#C0392B';
+      desc = `Tu IMC de ${imc} requiere atención profesional. Te recomendamos consultar con un médico o nutricionista antes de comenzar cualquier programa de entrenamiento intensivo.`;
+    }
+    const resultEl = document.getElementById('imc-result');
+    document.getElementById('imc-val').textContent = imc;
+    document.getElementById('imc-val').style.color = color;
+    document.getElementById('imc-cat').textContent = cat;
+    document.getElementById('imc-desc').textContent = desc;
+    resultEl.style.display = 'block';
+  }
+</script>
+</body>
+</html>
